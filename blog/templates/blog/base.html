@@ -1,0 +1,53 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+{% block title %}
+    <title>{{ SITE_NAME }}</title>
+{% endblock %}
+
+{% block keywords %}
+    <meta name="keywords" content="维京博客 Django Python 安全 Bootstrap H5 Web" />
+{% endblock %}
+
+{% block description %}
+    <meta name="description" content="维京博客" />
+{% endblock %}
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+
+<link href="{% static 'blog/css/all.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+{% block custom_css %}{% endblock %}
+
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{% static 'blog/js/sliders.js' %}"></script>
+<script type="text/javascript" src="{% static 'blog/js/cloudNew.js' %}"></script>
+
+{# <script type="text/javascript" src="{% static 'blog/js/up/js.js' %}"></script>  #}
+
+{% block custom_js %}{% endblock %}
+</head>
+<body>
+<div class="container">
+    {% include 'blog/header.html' %}
+    <div class="row clearfix">
+      <div class="col-sm-12 col-xs-12 col-md-8">
+          {% block left_content %}{% endblock %}
+      </div>
+      <div class="col-md-4 hidden-xs hidden-sm">
+        {# include 'blog/focusMe.html' #}
+        {% include 'blog/recommend.html' %}
+        {% include 'blog/tag.html' %}
+        {% include 'blog/archive.html' %}
+
+      </div>
+    </div>
+    {% include 'blog/footer.html' %}
+</div>
+</body>
+</html>

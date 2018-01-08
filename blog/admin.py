@@ -19,6 +19,7 @@ class TagAdmin(admin.ModelAdmin):
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'is_publish', 'is_recommend', 'is_original')
     list_display_links = ('id', 'title', )
+    list_editable = ('is_publish', 'is_recommend', )
     search_fields = ('title', )
     fieldsets = (
         (None, {
@@ -52,7 +53,8 @@ confirm_publish.short_description = "通过选中的申请"
 @admin.register(Link)
 class originateAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'url', 'Weights', 'is_publish', )
-    list_editable = ('name', 'Weights', 'is_publish', )
+    list_display_links = ('id', 'name', )
+    list_editable = ('Weights', 'is_publish', )
     actions = (confirm_publish, )
 
 # Register your models here.

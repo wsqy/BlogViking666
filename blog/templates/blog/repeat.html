@@ -1,0 +1,16 @@
+<div class="articleRepeat">
+    {% ifequal article.website_id  1 %}
+        <p>本文为<a href="{{ article.website.website}}">{{ article.website.name }}</a>原创</p>
+        <p>欢迎一切非营利性质的转载，转载请保留原文信息</p>
+        <p>商业转载请<a href="mailto:{{article.website.email}}">通过邮件联系我</a>
+        或<a href="{% url 'blog:article' 2747 %}">点此进入申请页面</a>
+        </p>
+    {% else %}
+        <p>本文转载自<a href="{{ article.website.website}}">{{ article.website.name }}</a>
+        为了获得更好的阅读体验及欣赏原文评论，维京博客推荐您<a href="{{ article.url_old }}">查看原文</a></p>
+            <p>如果本文是您的原创，
+            请<a href="{% url 'blog:article' 2747 %}">点此进入申述页面</a>留言申述
+            或<a href="mailto:1323800521@qq.com">通过邮件联系我</a>
+        </p>
+    {% endifequal %}
+</div>

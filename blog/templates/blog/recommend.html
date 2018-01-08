@@ -1,0 +1,49 @@
+{% load staticfiles %} {% load myfilter %}
+<div class="tabbable" id="recommend-tabs">
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a href="#panel-803700" data-toggle="tab">站长推荐</a>
+    </li>
+    <li>
+      <a href="#panel-803701" data-toggle="tab">阅读排行</a>
+    </li>
+    <li>
+      <a href="#panel-803702" data-toggle="tab">最新评论</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active bd bd-news" id="panel-803700">
+      <ul>
+        {% for publish in publish_list %}
+          <li>
+            <a href="{% url 'blog:article' publish.id %}">
+              {{ publish.title | zh_truncatewords:12 }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="tab-pane bd bd-news" id="panel-803701">
+      <ul>
+        {% for clickCount in clickCount_list %}
+        <li>
+          <a href="{% url 'blog:article' clickCount.id %}">
+            {{ clickCount.title | zh_truncatewords:12 }}
+          </a>
+        </li>
+        {% endfor %}
+
+      </ul>
+    </div>
+    <div class="tab-pane bd bd-news" id="panel-803702">
+      <ul>
+        <li><a href="/" >手机的16个惊人小秘密，据说...</a></li>
+        <li><a href="/" >你面对的是生活而不是手机</a></li>
+        <li><a href="/" >住在手机里的朋友</a></li>
+        <li><a href="/" >豪雅手机正式发布! 在法国全手工打造...</a></li>
+        <li><a href="/" >教你怎样用欠费手机拨打电话</a></li>
+        <li><a href="/" >原来以为，一个人的勇敢是，删掉他的...</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

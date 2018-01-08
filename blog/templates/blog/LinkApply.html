@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% block left_content %}
+<form action="" method="post" class="form-horizontal" role="form">
+{% csrf_token %}
+  <div class="form-group">
+    <label for="id_name" class="col-sm-2 control-label">站点名</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="id_name" maxlength="20" name="name" required="" placeholder="在这里填写贵站名称">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="id_url" class="col-sm-2 control-label">网站链接</label>
+    <div class="col-sm-10">
+      <input class="form-control"  id="id_url" maxlength="200" name="url" type="url" placeholder="在这里填写贵站网址">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="id_desc" class="col-sm-2 control-label">站点说明</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" id="id_desc" name="desc" rows="3" placeholder="在这里填写贵站的介绍，申请友链前请在贵站加上维京博客的友链"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default" vaule="提交申请">提交申请</button>
+    </div>
+  </div>
+</form>
+{% endblock %}

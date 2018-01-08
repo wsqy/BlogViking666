@@ -1,0 +1,14 @@
+{% load staticfiles %}
+<div id="tagscloud">
+  <!-- <h3>标签云</h3> -->
+   <button type="button" class="btn btn-default btn-block disabled">标签云</button>
+   <ul>
+    {% for tag in Tag_list %}
+        <li>
+            <a class= {{ classtagname|random }} href="{% url 'blog:tag' tag.name %}" >
+                {{ tag.name }}
+            </a>
+        </li>
+    {% endfor %}
+  </ul>
+</div>

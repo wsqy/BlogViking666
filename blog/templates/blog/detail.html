@@ -1,0 +1,41 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    <title>{{ SITE_NAME }}:{{ article.title }}</title>
+{% endblock %}
+
+{% block custom_css %}
+    {% for static in article.website.websitestatic_set.all %}
+        {{ static|safe }}
+    {% endfor %}
+{% endblock %}
+
+{% block left_content %}
+    <div class="article">
+        <div class="articleHeader">
+            <h1> {{ article.title }} </h1>
+            <h6 class="autor">
+                    {% for tag in article.tags.all %}
+                        <span class="glyphicon glyphicon-tags" style="color:#C0C0C0;"></span>
+                        <span class="lm f_l"><a href="{% url 'blog:tag' tag.name %}">{{ tag.name }}</a>&nbsp;</span>
+                    {% endfor %}
+                    <span class="glyphicon glyphicon-calendar" style="color:#C0C0C0;"></span>
+                    <span class="dtime f_l">{{ article.create_date|date:"Y-m-d" }}</span>
+                    <span class="dot">|</span>
+                    <span class="glyphicon glyphicon-eye-open" style="color:#C0C0C0;"></span>
+                    <span class="viewnum f_r">{{ article.click_count }} 浏览</span>
+            </h6>
+        </div>
+        {% ifnotequal article.desc "anonymous" %}
+            <div class="articleDesc">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ article.desc }}...</p>
+            </div>
+        {% endifnotequal %}
+        {% include "blog/repeat.html" %}
+
+        <div class="articleContent">
+            {{ article.Content | safe}}
+        </div>
+    </div>
+{% endblock %}

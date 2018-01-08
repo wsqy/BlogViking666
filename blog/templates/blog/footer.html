@@ -1,0 +1,14 @@
+{% load staticfiles %}
+<div class="row clearfix footer">
+    <div class="col-md-12 column">
+        <p class="links">友情链接:
+            {% for Links  in Links_list  %}
+                <a href="{{ Links.url }} " target="_blank" >{{ Links.name }}</a>
+            {% endfor %}
+
+        </p>
+          <p class="ft-copyright">维京博客 Design by viking
+              <a href="{% url 'blog:applyLink' %}">申请友情链接</a>
+          </p>
+    </div>
+</div>

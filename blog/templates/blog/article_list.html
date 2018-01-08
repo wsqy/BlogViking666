@@ -1,0 +1,33 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% block left_content %}
+    <div class="topnews">
+        <h2>{{ mes_title}}</h2>
+        {% for article in article_list %}
+          <div class="blogs">
+            <ul>
+              <h3><a href="{% url 'blog:article' article.id %}">{{ article }}</a></h3>
+              <p>
+                  <span class="glyphicon glyphicon-calendar" style="color:#C0C0C0;"></span>
+                  <span class="dtime f_l">{{ article.create_date|date:"Y-m-d" }}</span>
+                  <span class="dot">|</span>
+                  <span class="glyphicon glyphicon-eye-open" style="color:#C0C0C0;"></span>
+                  <span class="viewnum f_r">{{ article.click_count }} 浏览</span>
+                  <!-- <span class="dot">|</span> -->
+                  <!-- <span class="glyphicon glyphicon-comment" style="color:#C0C0C0;"></span> -->
+                  <!-- <span class="pingl f_r">评论（<a href="/">30</a>） -->
+               </p>
+              <p>{{ article.desc }}</p>
+              <p class="autor">
+                  {% for tag in article.tags.all %}
+                      <span class="glyphicon glyphicon-tags" style="color:#C0C0C0;"></span>
+                      <span class="lm f_l"><a href="{% url 'blog:tag' tag.name %}">{{ tag.name }}</a>&nbsp;</span>
+                  {% endfor %}
+                  <a style="float: right;color: #ff4d3a;" href="{% url 'blog:article' article.id %}" title="" data-original-title="阅读全文">阅读全文»</a>
+              </p>
+            </ul>
+          </div>
+        {% endfor %}
+    </div>
+{% include "blog/page_paginator.html" %}
+{% endblock %}
