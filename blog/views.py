@@ -1,10 +1,13 @@
+import logging
+
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.http import HttpResponse
 from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
 from django.conf import settings
+from django.db.models.aggregates import Count
+
 from blog.models import Tag, Category, Article, Link
 from blog.forms import LinkForm
-import logging
 
 logger = logging.getLogger('blog.views')
 
@@ -12,7 +15,8 @@ logger = logging.getLogger('blog.views')
 # 获取setting文件中的全局配置文件 (要设置全局解释器：settings的TEMPLATES的OPTIONS)
 def global_setting(request):
     # 获取分类信息
-    category_list = Category.objects.all()
+    # category_list = Category.objects.all()
+    category_list = Category.objects.annotate(num_posts=Count('article'))
 
     # 获取文章归档，使用的是自定义的方法
     # 抛弃自定义管理器方式 ，采用api提供了dates排序切割方式
@@ -21,10 +25,14 @@ def global_setting(request):
     archive_list = Article.objects.distinct_dates_api()
     # 获取友链
     Links_list = Link.objects.filter(is_publish=True)
+
     # 获取标签云
-    Tag_list = Tag.objects.all()
-    # 评论排行
+    # Tag_list = Tag.objects.all()
+    Tag_list = Tag.objects.annotate(num_posts=Count('article'))
+
+    # 点击排行
     clickCount_list = Article.objects.filter(is_publish=True).order_by("-click_count")[:6]
+
     # 站长推荐
     publish_list = Article.objects.filter(is_publish=True, is_recommend=True).order_by("-modify_date")[:6]
 

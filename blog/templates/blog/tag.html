@@ -6,7 +6,7 @@
     {% for tag in Tag_list %}
         <li>
             <a class= {{ classtagname|random }} href="{% url 'blog:tag' tag.name %}" >
-                {{ tag.name }}
+                {{ tag.name }} {% if tag.num_posts %} [{{tag.num_posts}}] {% endif %}
             </a>
         </li>
     {% endfor %}

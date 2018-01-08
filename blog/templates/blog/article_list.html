@@ -2,7 +2,9 @@
 {% load staticfiles %}
 {% block left_content %}
     <div class="topnews">
-        <h2>{{ mes_title}}</h2>
+        {% if mes_title %}
+          <h2>{{ mes_title}}</h2>
+        {% endif %}
         {% for article in article_list %}
           <div class="blogs">
             <ul>
