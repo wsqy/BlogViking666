@@ -18,11 +18,9 @@ def global_setting(request):
     # category_list = Category.objects.all()
     category_list = Category.objects.annotate(num_posts=Count('article'))
 
-    # 获取文章归档，使用的是自定义的方法
-    # 抛弃自定义管理器方式 ，采用api提供了dates排序切割方式
-    # archive_list = Article.objects.dates("create_date", 'month', order='DESC')
-    # 结果类似于： [(2016, [11, 1]), (2015, [11])]
-    archive_list = Article.objects.distinct_dates_api()
+    # 获取文章归档
+    archive_list = Article.objects.filter(is_publish=True)
+
     # 获取友链
     Links_list = Link.objects.filter(is_publish=True)
 

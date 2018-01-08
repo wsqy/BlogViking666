@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% comment %}
 <div class="panel-group" id="panel-509190">
     <button type="button" class="btn btn-default btn-block disabled">文章归档</button>
     {% for year, months in archive_list %}
@@ -12,6 +13,32 @@
                 <div class="panel-body">
                     {% for month in months %}
                         <a href="{% url "blog:pigeonhole" %}?year={{ year }}&month={{ month }}"><p>{{ month }} 月</p></a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endcomment %}
+
+<div class="panel-group" id="panel-509190">
+    <button type="button" class="btn btn-default btn-block disabled">文章归档</button>
+    {% regroup archive_list by create_date.year as year_post_group %}
+    {% for year in year_post_group %}
+        <div class="panel panel-default">
+            <div class="panel-heading" id="heading{{ forloop.counter }}">
+                 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-509190" href="#collapse{{ forloop.counter }}">
+                    {{ year.grouper }} 年
+                 </a>
+            </div>
+            {% regroup year.list by create_date.month as month_post_group %}
+            <div id="collapse{{ forloop.counter }}" class="panel-collapse collapse">
+                <div class="panel-body">
+                    {% for month in month_post_group %}
+                        <a href="{% url "blog:pigeonhole" %}?year={{ year.grouper  }}&month={{ month.grouper }}">
+                          <p>{{ month.grouper }} 月 --[{{ month.list | length }}]</p>
+                        </a>
                     {% endfor %}
                 </div>
             </div>

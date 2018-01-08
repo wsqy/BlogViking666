@@ -2,6 +2,7 @@ from collections import defaultdict
 
 from django.db import models
 import django.utils.timezone as timezone
+from django.utils.html import strip_tags
 
 from DjangoUeditor.models import UEditorField
 
@@ -39,31 +40,6 @@ class Category(models.Model):
         return self.name
 
 
-# 自定义的文章管理器
-class ArticleManager(models.Manager):
-    """
-    扩展文章的管理器
-    """
-    def distinct_date(self):
-        distinct_date_list = []
-        date_list = self.values("create_date")
-        for date in date_list:
-            date = date["create_date"].strftime("%Y/%m")
-            if date not in distinct_date_list:
-                distinct_date_list.append(date)
-        return distinct_date_list
-
-    def distinct_dates_api(self):
-        archive_list = Article.objects.dates("create_date", 'month', order='DESC')
-        # 获取到降序排列的精确到月份且已去重的文章发表时间列表
-        # 并把列表转为一个字典，字典的键为年份，值为该年份下对应的月份列表
-        archive_dict = defaultdict(list)
-        for d in archive_list:
-            archive_dict[d.year].append(d.month)
-        # 模板不支持defaultdict，因此我们把它转换成一个二级列表，由于字典转换后无序，因此重新降序排序
-        return sorted(archive_dict.items(), reverse=True)
-
-
 # 文章表：文章id,文章标题，文章描述，文章内容，创建时间，最近修改时间
 #               是否原创，是否推荐，阅读量，标签(外键，多对多) 分类(外键)
 class Article(models.Model):
@@ -86,12 +62,9 @@ class Article(models.Model):
     is_publish = models.BooleanField(default=False, verbose_name="是否发布")
     is_recommend = models.BooleanField(default=False, verbose_name="是否推荐")
 
-
     is_original = models.BooleanField(default=True, verbose_name="是否原创")
     url_old = models.CharField("原文链接", null=True, blank=True, max_length=100)
     website = models.CharField(verbose_name="来源站点", max_length=100, null=True, blank=True)
-
-    objects = ArticleManager()
 
     class Meta:
         verbose_name = "文章"
@@ -101,6 +74,19 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
+
+    def save(self, *args, **kwargs):
+        # 如果没有填写摘要
+        if not self.desc:
+            # strip_tags 去掉 HTML 文本的全部 HTML 标签
+            # 从文本摘取前 54 个字符赋给 excerpt
+            self.desc = strip_tags(self.Content)[:54]
+
+        if not self.url:
+            self.url = "%s-%s" % (self.id, self.title)[:99]
+
+        # 调用父类的 save 方法将数据保存到数据库中
+        super(Article, self).save(*args, **kwargs)
 
 # 友链表：id,名称 ，url,权重
 class Link(models.Model):
