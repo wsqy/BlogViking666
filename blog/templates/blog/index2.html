@@ -1,0 +1,187 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>qy的个人博客 </title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="{% static 'blog/css/base.css' %}" rel="stylesheet">
+<link href="{% static 'blog/css/index.css' %}" rel="stylesheet">
+<script type="text/javascript" src="{% static 'blog/js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'blog/js/sliders.js' %}"></script>
+
+<!-- 返回顶部调用 begin -->
+<script type="text/javascript" src="{% static 'blog/js/up/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'blog/js/up/js.js' %}"></script>
+<!-- 返回顶部调用 end-->
+</head>
+<body>
+<header>
+   这里是博客的头部  但是还没写。。。。。
+</header>
+<article>
+  <div class="l_box f_l">
+
+    <div class="topnews">
+      <h2><b>文章</b>推荐</h2>
+      <div class="blogs">
+        <figure><img src="{% static 'blog/images/01.jpg' %}"></figure>
+        <ul>
+          <h3><a href="/">用Python写一个简单的微博爬虫</a></h3>
+          <p> 我是个微博重度用户，工作学习之余喜欢刷刷timeline看看有什么新鲜事发生，也因此认识了不少高质量的原创大V，有分享技术资料的，有时不时给你一点人生经验的，有高产的段子手，有黄图黄段子小能手…</p>
+          <p class="autor"><span class="lm f_l"><a href="/">python</a></span><span class="dtime f_l">2014-02-19</span><span class="viewnum f_r">浏览（<a href="/">459</a>）</span><span class="pingl f_r">评论（<a href="/">30</a>）</span></p>
+        </ul>
+      </div>
+      <div class="blogs">
+        <figure><img src="{% static 'blog/images/02.jpg' %}"></figure>
+        <ul>
+          <h3><a href="/">NetreSec 谈天朝运营商数据包注入攻击</a></h3>
+          <p> 我们之前曾发过关于数据包注入攻击的博客，例如：“Chinese DDoS of GitHub” 和 “Covert Man-on-the-Side Attacks”。今天我们还想跟大家分享一些来自真实世界的包注入攻击情报，这些攻击已经持续数月，而且现在依旧非常活跃。详情：...</p>
+          <p class="autor"><span class="lm f_l"><a href="/">信息安全</a></span><span class="dtime f_l">2014-02-19</span><span class="viewnum f_r">浏览（<a href="/">459</a>）</span><span class="pingl f_r">评论（<a href="/">30</a>）</span></p>
+        </ul>
+      </div>
+      <div class="blogs">
+        <figure><img src="{% static 'blog/images/03.jpg' %}"></figure>
+        <ul>
+          <h3><a href="/">NGINX 1.9.1 中的 Socket 切分</a></h3>
+          <p> NGINX发布的1.9.1版本引入了一个新的特性：允许使用SO_REUSEPORT套接字选项，该选项在许多操作系统的新版本中是可用的，包括DragonFly BSD和Linux（内核版本3.9及以后）。... </p>
+          <p class="autor"><span class="lm f_l"><a href="/">网站开发</a></span><span class="dtime f_l">2014-02-19</span><span class="viewnum f_r">浏览（<a href="/">459</a>）</span><span class="pingl f_r">评论（<a href="/">30</a>）</span></p>
+        </ul>
+      </div>
+      <div class="blogs">
+        <figure><img src="{% static 'blog/images/04.jpg' %}"></figure>
+        <ul>
+          <h3><a href="/">逐步提升程序质量的演变过程示例</a></h3>
+          <p>如何编写高质量的程序呢？ 在《Web服务端软件的的服务品质概要》阐述了程序的常见质量属性及实现策略方法，本文将通过一个 Python 实现的图片文件批量重命名工具来演示如何逐步提升程序质量...</p>
+          <p class="autor"><span class="lm f_l"><a href="/">程序编程</a></span><span class="dtime f_l">2014-02-19</span><span class="viewnum f_r">浏览（<a href="/">459</a>）</span><span class="pingl f_r">评论（<a href="/">30</a>）</span></p>
+        </ul>
+      </div>
+      <div class="blogs">
+        <figure><img src="{% static 'blog/images/05.jpg' %}"></figure>
+        <ul>
+          <h3><a href="/">2016年特别福利――史上最全CSS学习资料大全</a></h3>
+          <p> 开学了，找不到好的学习资料，不知道CSS从何下手？不知道怎样进一步提升自己的CSS水平和能力？本文给你最全的CSS学习资料、视频、重难点指引...</p>
+          <p class="autor"><span class="lm f_l"><a href="/">学习资料</a></span><span class="dtime f_l">2014-02-19</span><span class="viewnum f_r">浏览（<a href="/">459</a>）</span><span class="pingl f_r">评论（<a href="/">30</a>）</span></p>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+  <div class="r_box f_r">
+    <div class="tit01">
+      <h3>关注我</h3>
+      <div class="gzwm">
+        <ul>
+          <li><a class="xlwb" href="#" target="_blank">新浪微博</a></li>
+          <li><a class="txwb" href="#" target="_blank">腾讯微博</a></li>
+          <li><a class="rss" href="portal.php?mod=rss" target="_blank">RSS</a></li>
+          <li><a class="wx" href="mailto:admin@admin.com">邮箱</a></li>
+        </ul>
+      </div>
+    </div>
+    <!--tit01 end-->
+    <div class="moreSelect" id="lp_right_select">
+      <script>
+window.onload = function ()
+{
+	var oLi = document.getElementById("tab").getElementsByTagName("li");
+	var oUl = document.getElementById("ms-main").getElementsByTagName("div");
+
+	for(var i = 0; i < oLi.length; i++)
+	{
+		oLi[i].index = i;
+		oLi[i].onmouseover = function ()
+		{
+			for(var n = 0; n < oLi.length; n++) oLi[n].className="";
+			this.className = "cur";
+			for(var n = 0; n < oUl.length; n++) oUl[n].style.display = "none";
+			oUl[this.index].style.display = "block"
+		}
+	}
+}
+</script>
+      <div class="ms-top">
+        <ul class="hd" id="tab">
+          <li class="cur"><a href="/">站长推荐</a></li>
+          <li><a href="/">阅读排行</a></li>
+          <li><a href="/">最新评论</a></li>
+        </ul>
+      </div>
+      <div class="ms-main" id="ms-main">
+        <div style="display: block;" class="bd bd-news" >
+          <ul>
+            <li><a href="/" target="_blank">NGINX 1.9.1 中的 Socket 切分</a></li>
+            <li><a href="/" target="_blank">逐步提升程序质量的演变过程示例</a></li>
+            <li><a href="/" target="_blank">用Python写一个简单的微博爬虫</a></li>
+			<li><a href="/" target="_blank">当随机数不够随机。。</a></li>
+            <li><a href="/" target="_blank">手机的16个惊人小秘密，据说99.999%的人都不知</a></li>
+			<li><a href="/" target="_blank">史上最全CSS学习资料大全</a></li>
+          </ul>
+        </div>
+        <div  class="bd bd-news">
+          <ul>
+            <li><a href="/" target="_blank">用Python写一个简单的微博爬虫</a></li>
+            <li><a href="/" target="_blank">史上最全CSS学习资料大全</a></li>
+            <li><a href="/" target="_blank">NGINX 1.9.1 中的 Socket 切分</a></li>
+            <li><a href="/" target="_blank">教你怎样用欠费手机拨打电话</a></li>
+			<li><a href="/" target="_blank">当随机数不够随机。。</a></li>
+			<li><a href="/" target="_blank">逐步提升程序质量的演变过程示例</a></li>
+          </ul>
+        </div>
+        <div class="bd bd-news">
+          <ul>
+            <li><a href="/" target="_blank">当随机数不够随机。。</a></li>
+            <li><a href="/" target="_blank">你面对的是生活而不是手机</a></li>
+            <li><a href="/" target="_blank">逐步提升程序质量的演变过程示例</a></li>
+            <li><a href="/" target="_blank">NGINX 1.9.1 中的 Socket 切分</a></li>
+			<li><a href="/" target="_blank">史上最全CSS学习资料大全</a></li>
+			<li><a href="/" target="_blank">用Python写一个简单的微博爬虫</a></li>
+          </ul>
+        </div>
+      </div>
+      <!--ms-main end -->
+    </div>
+    <!--切换卡 moreSelect end -->
+
+    <div class="cloud">
+      <h3>标签云</h3>
+      <ul>
+        <li><a href="/">web开发</a></li>
+        <li><a href="/">Html+CSS</a></li>
+        <li><a href="/">PHP</a></li>
+        <li><a href="/">Html5+css3</a></li>
+        <li><a href="/">Python</a></li>
+        <li><a href="/">Javasript</a></li>
+        <li><a href="/">蓝桥杯</a></li>
+        <li><a href="/">C/C++</a></li>
+        <li><a href="/">前端设计</a></li>
+        <li><a href="/">eclise</a></li>
+        <li><a href="/">django</a></li>
+        <li><a href="/">java</a></li>
+      </ul>
+    </div>
+    <div class="tuwen">
+      <h3><strong>文章归档</strong></h3>
+      <ul class=" pigeonhole ">
+        <li><a href="/"> 2016年3月文章归档</a> </li>
+        <li><a href="/"> 2016年2月文章归档</a> </li>
+        <li><a href="/"> 2016年1月文章归档</a> </li>
+        <li><a href="/"> 2015年10月文章归档</a> </li>
+        <li><a href="/"> 2015年8月文章归档</a> </li>
+		<li><a href="/"> 2015年7月文章归档</a> </li>
+      </ul>
+	  <a id="upfold" href="/"> 展开全部</a>
+    </div>
+
+  </div>
+  <!--r_box end --> 
+</article>
+<footer>
+  <div >
+	<p class="links">友情链接:<a href=" ">新浪微博</a> | <a href=" ">新浪博客</a> | <a href=" ">中国网</a> | <a href=" ">中国新闻网</a></p>
+    <p class="ft-copyright">qy的个人博客 Design by WSQY </p>
+  </div>
+</footer>
+</body>
+</html>
