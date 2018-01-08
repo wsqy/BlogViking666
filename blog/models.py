@@ -44,8 +44,6 @@ class Category(models.Model):
 #               是否原创，是否推荐，阅读量，标签(外键，多对多) 分类(外键)
 class Article(models.Model):
     title = models.CharField(max_length=255, verbose_name="标题", null=False)
-    # 文章唯一性标识
-    url = models.CharField(verbose_name="文章hash", max_length=100, null=True, blank=True)
     desc = models.CharField(max_length=128, verbose_name="描述", null=True, blank=True)
     # content = models.TextField(blank=True, null = True,verbose_name = "文章内容")
     Content = UEditorField(
@@ -80,10 +78,7 @@ class Article(models.Model):
         if not self.desc:
             # strip_tags 去掉 HTML 文本的全部 HTML 标签
             # 从文本摘取前 54 个字符赋给 excerpt
-            self.desc = strip_tags(self.Content)[:54]
-
-        if not self.url:
-            self.url = "%s-%s" % (self.id, self.title)[:99]
+            self.desc = strip_tags(self.Content)[:100]
 
         # 调用父类的 save 方法将数据保存到数据库中
         super(Article, self).save(*args, **kwargs)

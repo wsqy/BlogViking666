@@ -35,3 +35,8 @@ def category_filter(querySets, subId=None):
     # query = [queryset for queryset in querySets if queryset.SubClass_id == subId]
     # return query
     return querySets.filter(SubClass=subId)
+
+@register.filter
+def urlparse_filter(url):
+    bb = url.split('/')
+    return "%s//%s/" % (bb[0], bb[2])

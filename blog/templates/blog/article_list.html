@@ -8,7 +8,7 @@
         {% for article in article_list %}
           <div class="blogs">
             <ul>
-              <h3><a href="{% url 'blog:article' article.id %}">{{ article }}</a></h3>
+              <h3><a href="{% url 'blog:article' article.id article.title %}">{{ article }}</a></h3>
               <p>
                   <span class="glyphicon glyphicon-calendar" style="color:#C0C0C0;"></span>
                   <span class="dtime f_l">{{ article.create_date|date:"Y-m-d" }}</span>
@@ -25,7 +25,7 @@
                       <span class="glyphicon glyphicon-tags" style="color:#C0C0C0;"></span>
                       <span class="lm f_l"><a href="{% url 'blog:tag' tag.name %}">{{ tag.name }}</a>&nbsp;</span>
                   {% endfor %}
-                  <a style="float: right;color: #ff4d3a;" href="{% url 'blog:article' article.id %}" title="" data-original-title="阅读全文">阅读全文»</a>
+                  <a style="float: right;color: #ff4d3a;" href="{% url 'blog:article' article.id article.title %}" title="" data-original-title="阅读全文">阅读全文»</a>
               </p>
             </ul>
           </div>

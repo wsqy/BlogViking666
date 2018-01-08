@@ -148,6 +148,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 SITE_NAME = "维京博客"
+SITE_EMAILL = 'qiyuan@viking666.com'
 SITE_KEY = "python, BootStrap, Linux, 信息安全"
 SITE_DESC = "人生苦短，我用PYTHON"
 

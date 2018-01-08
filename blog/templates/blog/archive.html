@@ -37,7 +37,7 @@
                 <div class="panel-body">
                     {% for month in month_post_group %}
                         <a href="{% url "blog:pigeonhole" %}?year={{ year.grouper  }}&month={{ month.grouper }}">
-                          <p>{{ month.grouper }} 月 --[{{ month.list | length }}]</p>
+                          <p>{{ month.grouper }} 月 [{{ month.list | length }}]</p>
                         </a>
                     {% endfor %}
                 </div>

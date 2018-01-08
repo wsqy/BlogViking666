@@ -34,14 +34,12 @@ def global_setting(request):
     # 站长推荐
     publish_list = Article.objects.filter(is_publish=True, is_recommend=True).order_by("-modify_date")[:6]
 
-    SITE_NAME = settings.SITE_NAME
-    SITE_KEY = settings.SITE_KEY
-    SITE_DESC = settings.SITE_DESC
     classtagname = ["tagc1", "tagc2", "tagc3", "tagc4", "tagc5"]
 
     return {
-        "SITE_NAME": SITE_NAME,
-        "SITE_KEY": SITE_KEY,
+        "SITE_NAME": settings.SITE_NAME,
+        "SITE_EMAILL": settings.SITE_EMAILL,
+        "SITE_KEY": settings.SITE_KEY,
         "SITE_DESC": settings.SITE_DESC,
         "category_list": category_list,
         "archive_list": archive_list,
@@ -72,12 +70,7 @@ def index(request):
     """
     """
     try:
-        # 分类信息获取(导航数据)(已设置全局变量)
-        # category_list = Category.objects.all()[:5]
-        # 获取文章归档，使用的是自定义的方法 (已设置全局变量)
-        # archive_list = Article.objects.distinct_date()
-        # 最新文章,默认按照修改时间排序
-        article_list = Article.objects.filter(is_publish=True).order_by("-create_date")
+        article_list = Article.objects.filter(is_publish=True)
         article_list = getPage(request, article_list, 5)
     except Exception as e:
         logger.error(e)
@@ -85,8 +78,8 @@ def index(request):
 
 
 # 文章详情页
-def articleDetail(request, article_id):
-    article = get_object_or_404(Article, id=article_id)
+def articleDetail(request, article_id, article_title):
+    article = get_object_or_404(Article, id=article_id, title__startswith=article_title)
     # 浏览一次 ，点击次数加1
     article.click_count += 1
     article.save()
@@ -98,9 +91,11 @@ def pigeonhole(request):
     try:
         # 首先获取用户提交的数据
         year = request.GET.get("year", None)
-        month = request.GET.get("month", None)
-        article_list = get_list_or_404(Article, create_date__icontains=year + "-" + month, is_publish=True)
-        # article_list = Article.objects.filter(create_date__icontains=year + "-" + month).filter(is_publish=True)
+        # month = '{:02}'.format(request.GET.get("month", ''))
+        month = request.GET.get("month", '').rjust(2, "0")
+
+        # article_list = get_list_or_404(Article, create_date__icontains=year + "-" + month, is_publish=True)
+        article_list = Article.objects.filter(is_publish=True, create_date__startswith=year + "-" + month)
         article_list = getPage(request, article_list)
     except Exception as e:
         logger.error(e)
@@ -113,7 +108,7 @@ def tag(request, tag_name):
     try:
         # 首先获取用户提交的数据
         # article_list = get_list_or_404(Article, tags__name=tag_name, is_publish=True)
-        article_list = Article.objects.filter(tags__name=tag).filter(is_publish=True)
+        article_list = Article.objects.filter(is_publish=True, tags__name=tag_name)
         article_list = getPage(request, article_list)
     except Exception as e:
         logger.error(e)
@@ -125,7 +120,7 @@ def tag(request, tag_name):
 def category(request, category_name):
     try:
         # article_list = get_list_or_404(Article, category__name=category_name, is_publish=True)
-        article_list = Article.objects.filter(tags__name=tag, is_publish=True)
+        article_list = Article.objects.filter(category__name=category_name, is_publish=True)
         article_list = getPage(request, article_list)
     except Exception as e:
         logger.error(e)

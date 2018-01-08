@@ -16,7 +16,7 @@
       <ul>
         {% for publish in publish_list %}
           <li>
-            <a href="{% url 'blog:article' publish.id %}">
+            <a href="{% url 'blog:article' publish.id publish.title %}">
               {{ publish.title | zh_truncatewords:12 }}
             </a>
           </li>
@@ -27,7 +27,7 @@
       <ul>
         {% for clickCount in clickCount_list %}
         <li>
-          <a href="{% url 'blog:article' clickCount.id %}">
+          <a href="{% url 'blog:article' clickCount.id clickCount.title %}">
             {{ clickCount.title | zh_truncatewords:12 }}
           </a>
         </li>
