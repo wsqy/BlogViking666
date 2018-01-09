@@ -1,0 +1,207 @@
+/*全局样式*/
+* { margin: 0; padding: 0 }
+/*全局样式结束*/
+
+/*左文章列表*/
+.topnews {
+    margin: -20px 0;
+}
+.topnews h2 {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 36px;
+    border-bottom: #db6d4c 4px solid;
+}
+
+/*单条文章的样式*/
+.topnews .blogs {
+    /*padding: 10px 0px 20px 0px;*/
+    position: relative;
+    border-bottom: #CCC 1px solid;
+    overflow: hidden
+}
+.topnews .blogs ul {
+    line-height: 22px;
+    color: #756F71;
+}
+.topnews .blogs h3 {
+    font-size: 20px;
+    font-weight: bold;
+    transition: all .5s;
+    margin-bottom: 10px
+}
+.topnews .blogs h3 a {
+    color: #474645;
+    transition: all .3s;
+    -moz-transition: all .3s;
+    text-decoration:none;
+}
+.topnews .blogs h3 a:hover {
+    color: #ff4d3a;
+}
+
+.topnews .blogs .dot {
+    margin: 0 10px;
+    color: #aaa;
+}
+
+.topnews .blogs .autor {
+    overflow: hidden;
+    clear: both;
+    margin: 10px 0;
+    display: inline-block;
+    color: #838383;
+    width: 100%;
+}
+
+.topnews .blogs .autor span {
+    margin: 0 5px 0 0;
+    /*padding-left: 20px*/
+}
+.topnews .blogs .autor span a {
+    color: #759b08;
+}
+.topnews .blogs .autor span a:hover {
+     text-decoration: underline;
+ }
+/*左文章列表结束*/
+
+
+
+
+
+/*推荐版块*/
+#recommend-tabs .nav-tabs li{
+    width: 33%;
+}
+#recommend-tabs .nav-tabs li a{
+    font-size: 14px;
+}
+/*标签页的样式*/
+.bd-news ul {
+    padding: 0px 0 0 10px;
+    margin-top: -10px;
+    background: url(../images/ph2.png) no-repeat 10px 29px;
+}
+.bd-news ul li {
+    border-bottom: solid 1px #EAEAEA;
+    /* line-height: 30px; */
+    overflow: hidden;
+    font-size: 14px;
+    padding: 0 0 0 30px;
+}
+.bd-news ul li a {
+    display: block;
+    text-decoration:none;
+}
+/* 鼠标放上去的效果 */
+.bd-news ul li a:hover {
+    /*color: #000; */
+    font-size: 16px;
+}
+/*推荐版块结束*/
+
+/*标签云*/
+#tagscloud{
+    height:300px;
+    position:relative;
+    font-size:12px;
+    color:#333;
+    margin:20px auto 0;
+    text-align:center;
+}
+
+#tagscloud ul{
+    list-style: none;
+}
+#tagscloud a{
+    position:absolute;
+    top:0px;
+    left:0px;
+    color:#333;
+    font-family:Arial;
+    text-decoration:none;
+    margin:0 10px 15px 0;
+    line-height:24px;
+    text-align:center;
+    font-size:12px;
+    padding:1px 5px;
+    display:inline-block;
+    border-radius:3px;
+}
+#tagscloud a.tagc1{background:#FF7F50;color:#fff;}
+#tagscloud a.tagc2{background:#666;color:#fff;}
+#tagscloud a.tagc3{background:#F16E50;color:#fff;}
+#tagscloud a.tagc4{background:#00ff00;color:#fff;}
+#tagscloud a.tagc5{background:#9ACD32;color:#fff;}
+
+#tagscloud a:hover{color:#fff;background:#0099ff;}
+/*标签云结束*/
+
+/*底部开始*/
+.footer{
+    background: #333;
+    clear: both;
+    text-align: center;
+}
+
+.footer p{
+    color: #fff;
+    line-height: 24px;
+}
+/*底部结束*/
+
+/*文章开始*/
+
+/*文章头部*/
+.article img{
+    max-width: 100%;
+
+}
+
+
+.article .articleHeader{
+    border-bottom: 1px solid #e8e8e8;
+
+}
+
+/*头部的h1标签*/
+.article .articleHeader h1{
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: normal;
+    text-align: center;
+    margin: -5px 0 10px 0;
+    font-family: "Microsoft YaHei", 'Myriad Pro','Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.article .articleHeader h6{
+    text-align: right;
+}
+
+/*文章的描述信息*/
+.article .articleDesc{
+    color: #666666;
+    font-size: 14px;
+    padding: 10px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.article .articleDesc p{
+    margin: 0px;
+}
+
+/*文章的转发信息*/
+.article .articleRepeat{
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    color: #c0c0c0;
+}
+
+.article .articleRepeat a{
+    color: #00bfff;
+    font-size: 15px;
+}
+/*文章结束*/
