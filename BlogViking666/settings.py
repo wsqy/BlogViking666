@@ -88,7 +88,7 @@ DATABASES = {
         # 密码
         'PASSWORD': 'bl&1cl23',
         # 安装mysql数据库的主机ip
-        'HOST': '123.206.210.196',
+        'HOST': '167.160.191.216',
         'OPTIONS': {
             'autocommit': True,
             'init_command': 'SET default_storage_engine=INNODB',

@@ -17,13 +17,13 @@ class TagAdmin(admin.ModelAdmin):
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'is_publish', 'is_recommend', 'is_original')
-    list_display_links = ('id', 'title', )
+    list_display = ('title', 'is_publish', 'is_recommend', 'is_original')
+    list_display_links = ('title', )
     list_editable = ('is_publish', 'is_recommend', )
     search_fields = ('title', )
     fieldsets = (
         (None, {
-            'fields': ('title', 'url', 'desc', ('is_publish', 'is_recommend', 'click_count',),),
+            'fields': ('title', 'desc', ('is_publish', 'is_recommend', 'click_count',),),
         }),
         ('时间', {
             'classes': ('collapse',),
